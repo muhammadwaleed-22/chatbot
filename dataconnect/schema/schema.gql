@@ -1,0 +1,39 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type AIModel @table {
+  name: String!
+  modelId: String!
+  description: String!
+  createdAt: Timestamp!
+  provider: String
+  capabilities: [String]
+}
+
+type Conversation @table {
+  title: String!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  isSaved: Boolean
+  user: User
+  aiModel: AIModel
+}
+
+type Message @table {
+  content: String!
+  senderType: String!
+  timestamp: Timestamp!
+  feedbackRating: Int
+  conversation: Conversation
+}
+
+type Feedback @table {
+  rating: Int!
+  createdAt: Timestamp!
+  comment: String
+  message: Message
+}
